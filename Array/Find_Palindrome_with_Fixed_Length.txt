@@ -1,0 +1,44 @@
+Given an integer array queries and a positive integer intLength,
+ return an array answer where answer[i] is either the queries[i]th smallest positive
+ palindrome of length intLength or -1 if no such palindrome exists.
+
+A palindrome is a number that reads the same backwards and forwards. 
+Palindromes cannot have leading zeros.
+
+
+
+ vector<long long> kthPalindrome(vector<int>& queries, int intLength)
+        {
+           int i,p=1;
+           int k=(intLength+1)/2;
+           long long res;
+           vector<long long>v;
+           for(i=0;i<k-1;i++)
+           {
+               p*=10;
+           }
+        
+           for(auto x:queries)
+           {
+            if(x>9*p)
+            {
+                v.push_back(-1);
+            }
+             else
+             {
+                 res=p+x-1;
+                 auto s=to_string(res);
+                 s.resize(intLength-k);
+                 reverse(s.begin(),s.end());
+                 for(auto c:s)
+                 {
+                     res=res*10+c-'0';
+                 }
+                 v.push_back(res);
+                 
+             }
+           }
+           return v;
+            
+        }
+

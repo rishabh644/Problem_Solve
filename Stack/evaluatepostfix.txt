@@ -1,0 +1,60 @@
+int evaluatePostfix(string S)
+    {
+        // Your code here
+        stack<int>st;
+        int i=0,m,n;
+        while(i<S.size())
+        {
+            if(48<=S[i] && S[i]<=57)
+            {
+                st.push(S[i]-48);
+            }
+            else
+            {
+                if(S[i]=='*')
+                {
+                   n=st.top();
+                   st.pop();
+                   m=st.top();
+                   st.pop();
+                   st.push(m*n);
+                }
+                else if(S[i]=='+')
+                {
+                   n=st.top();
+                   st.pop();
+                   m=st.top();
+                   st.pop();
+                   st.push(m+n);
+                }
+                else if(S[i]=='-')
+                {
+                   n=st.top();
+                   st.pop();
+                   m=st.top();
+                   st.pop();
+                   st.push(m-n);
+                }
+                else
+                {
+                   n=st.top();
+                   st.pop();
+                   m=st.top();
+                   st.pop();
+                   st.push(m/n);
+                }
+            }
+            
+            i++;
+        }
+        return st.top();
+    }
+
+
+Algorithm
+1.Evaluate the string from left to right.
+2.If the value is operand push into stack.
+3.If the value is operator pop top two element evaluate and push into stack.
+4.The value in the stack is the answer.
+
+

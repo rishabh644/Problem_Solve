@@ -1,0 +1,30 @@
+ int CR(int price[],int l,int n,vector<vector<int>>&vec)
+    {
+        if(vec[l][n]==-1)
+        {
+            int ans;
+            if(l==0)
+            ans=0;
+            else if(n==0)
+            ans=INT_MIN;
+            else if(l>=n)
+            {
+                ans=max(price[n-1]+CR(price,l-n,n,vec),CR(price,l,n-1,vec));
+            }
+            else
+            {
+                ans=CR(price,l,n-1,vec);
+            }
+            vec[l][n]=ans;
+            return vec[l][n];
+        }
+        return vec[l][n];
+        
+    }
+    int cutRod(int price[], int n) {
+        //code here
+        
+        //return max(cutRod(price,n-n)+price[n-1],cutRod(price,n));
+        vector<vector<int>>vec(n+1,vector<int>(n+1,-1));
+        return CR(price,n,n,vec);
+    }

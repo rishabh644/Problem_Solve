@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
+    {    if(n==1)
+         return true;
+        int v;
+        vector<vector<int>>adjls(n);
+         for(auto ed:edges)
+         {
+            adjls[ed[0]].push_back(ed[1]);
+            adjls[ed[1]].push_back(ed[0]);
+          }
+         vector<int>clr(n);
+         clr[source]=1; 
+        queue<int>qu;
+        qu.push(source);
+        while(!qu.empty())
+        {
+            v=qu.front();
+            for(int av:adjls[v])
+            {
+                if(clr[av]==0)
+                {
+                    qu.push(av);
+                    clr[av]=1;
+                }
+                if(av==destination)
+                    return true;
+            }
+            qu.pop();
+        }
+     if(clr[destination]==1)
+         return true;
+     return false;
+        
+        
+        
+    }
+    
+
+                };

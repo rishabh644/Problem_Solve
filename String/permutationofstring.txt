@@ -1,0 +1,30 @@
+void swap(char& a,char& b)
+	    {
+	        char temp;
+	        temp=a;
+	        a=b;
+	        b=temp;
+	    }
+	    
+	    void permutation(string s,int i)
+	    {
+	        if(i==s.size()-1)
+	        ans.push_back(s);
+	        else
+	        {
+	            for(int j=i;j<s.size();j++)
+	            {
+	                swap(s[i],s[j]);
+	                permutation(s,i+1);
+	            }
+	        }
+	    }
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    permutation(S,0);
+		    vector<string>rans=ans;
+		    sort(rans.begin(),rans.end());
+		    ans.clear();
+		    return rans;
+		}

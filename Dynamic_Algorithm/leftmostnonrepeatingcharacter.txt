@@ -1,0 +1,23 @@
+    char nonrepeatingCharacter(string S)
+    {
+       //Your code here
+       pair<int,int> count[chararr];
+       int i,ans=INT_MAX;
+       for(i=0;i<S.size();i++)
+       {   if(count[S[i]].first==0)
+            count[S[i]].second=i;
+           (count[S[i]].first)++;
+       }
+       for(i=0;i<256;i++)
+       {
+           if(count[i].first==1)
+           {
+               ans=min(ans,count[i].second);
+           }
+       }
+       if(ans==INT_MAX)
+       return '$';
+       return S[ans];
+       
+       
+    }

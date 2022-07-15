@@ -1,0 +1,56 @@
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
+
+void swap(int *p,int *p1){
+int t=*p;
+*p=*p1;
+*p1=t;
+}
+int partition(int arr[],int l,int r)
+{
+    int pv=arr[r];
+    int i=l-1;
+    for(int k=l;k<=r-1;k++)
+    {
+        if(arr[k]<=pv)
+        {
+            i++;
+            swap(&arr[i],&arr[k]);
+        }
+    }
+    i++;
+    swap(&arr[i],&arr[r]);
+    return i;
+}
+class Solution{
+    public:
+    // arr : given array
+    // l : starting index of the array i.e 0
+    // r : ending index of the array i.e size-1
+    // k : find kth smallest element and return using this function
+    int kthSmallest(int arr[], int l, int r, int k) {
+        //code here
+        srand (time(NULL));
+         int iSecret = rand() % (r-l+1) + l;
+         swap(&arr[iSecret],&arr[r]);
+           int p;
+           
+            p=partition(arr,l,r);
+            if(p==(k-1))
+            {return arr[p];
+            }
+            else if(p>(k-1))
+            {
+              return kthSmallest(arr,l,p-1,k);
+              
+            }
+            else
+            {
+                return kthSmallest(arr,p+1,r,k);
+            }
+            
+            
+        
+        
+    }
+};

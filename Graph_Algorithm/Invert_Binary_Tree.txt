@@ -1,0 +1,26 @@
+ TreeNode* invertTree(TreeNode* root) {
+        
+        queue<TreeNode*>q;
+        TreeNode* cur;
+        if(root==NULL)
+            return root;
+        q.push(root);
+        while(!q.empty())
+        {
+              cur=q.front();
+              if(cur->left!=NULL)
+                  q.push(cur->left);
+              if(cur->right!=NULL)
+                  q.push(cur->right);
+            swap(cur);
+            q.pop();
+        }
+        return root;
+    }
+    void swap(TreeNode* rt)
+    {
+        TreeNode* t;
+        t=rt->left;
+        rt->left=rt->right;
+        rt->right=t;
+    }

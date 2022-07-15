@@ -1,0 +1,79 @@
+string infixToPostfix(string s)
+    {
+        // Your code here
+        int i=0;
+        s.push_back(')');
+        stack<char>st;
+        string str="";
+        char temp;
+        st.push('(');
+        for(i=0;i<s.size();i++)
+        {
+            if(s[i]>=65 && s[i]<=90)
+            {
+                str.push_back(s[i]);
+            }
+            else if(s[i]>=97 && s[i]<=122)
+            {
+                str.push_back(s[i]);
+            }
+            else if(s[i]==')')
+            {
+                while(st.top()!='(')
+                {
+                  temp=st.top();
+                  st.pop();
+                  str.push_back(temp);
+                }
+                st.pop();
+            }
+            else if(s[i]=='+' )
+            {
+                while(st.top()!='(')
+                {
+                    temp=st.top();
+                    st.pop();
+                    str.push_back(temp);
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='-' )
+            {
+                while(st.top()!='(' )
+                {
+                    temp=st.top();
+                    st.pop();
+                    str.push_back(temp);
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='/' )
+            {
+                while(st.top()=='*')
+                {
+                    temp=st.top();
+                    st.pop();
+                    str.push_back(temp);
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='*' )
+            {
+                while(st.top()=='/')
+                {
+                    temp=st.top();
+                    st.pop();
+                    str.push_back(temp);
+                }
+                st.push(s[i]);
+            }
+            
+            else
+            {
+                st.push(s[i]);
+            }
+            
+        }
+        return str;
+        
+    }

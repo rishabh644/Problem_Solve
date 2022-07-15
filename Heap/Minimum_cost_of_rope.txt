@@ -1,0 +1,25 @@
+ long long minCost(long long arr[], long long n) {
+        // Your code here
+        long long mnCost=0,t1,t2;
+        int i=0;
+        vector<long long>vc;
+        for(i=0;i<n;i++)
+        {
+            vc.push_back(arr[i]*(-1));
+        }
+        make_heap(vc.begin(),vc.end());
+        while(vc.size()>1)
+        {
+            mnCost+=vc.front();
+            t1=vc.front();
+            pop_heap(vc.begin(),vc.end());
+            vc.pop_back();
+            mnCost+=vc.front();
+            t2=vc.front();
+            pop_heap(vc.begin(),vc.end());
+            vc.pop_back();
+            vc.push_back(t1+t2);
+            push_heap(vc.begin(),vc.end());
+        }
+        return (-1)*mnCost;
+    }

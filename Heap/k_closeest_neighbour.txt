@@ -1,0 +1,37 @@
+    bool operator()(pair<int,int>a,pair<int,int>b)
+    {
+        if(a.second>b.second)
+        return true;
+        else if(a.second==b.second)
+        {
+            if(a.first>b.first)
+            return true;
+            else
+            return false;
+        }
+        else
+        return false;
+    }
+};
+class Solution{
+    public:
+    vector<int> Kclosest(vector<int>arr, int n, int x, int k) 
+    { 
+        // Your code goes here 
+        priority_queue<pair<int,int>,vector<pair<int,int>>,myComp>q;
+        vector<int>ans;
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            q.push(make_pair(arr[i],abs(arr[i]-x)));
+        }
+        while(k--)
+        {
+            ans.push_back(q.top().first);
+            q.pop();
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+    
+};

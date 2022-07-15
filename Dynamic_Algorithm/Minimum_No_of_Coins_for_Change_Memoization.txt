@@ -1,0 +1,45 @@
+    int mincoin(vector<int>& coins,int i,int amount,vector<vector<int>>& vec)
+    {
+     
+        if(vec[i][amount]!=-1)
+            return vec[i][amount];
+        else
+        {
+            if(i==0)
+            {
+                if(amount%coins[i]==0)
+                    vec[i][amount]=amount/coins[i];
+                else 
+                    vec[i][amount]=1e9;
+            }
+            else if(amount==0)
+            {
+                vec[i][amount]=0;
+                
+            }
+            else
+            {
+                int nt,tk=INT_MAX;
+                nt=mincoin(coins,i-1,amount,vec);
+                if(coins[i]<=amount)
+                    tk=1+mincoin(coins,i,amount-coins[i],vec);
+                vec[i][amount]=min(nt,tk);
+            }
+            
+        }
+        return vec[i][amount];
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        if(amount==0)
+            return 0;
+        vector<vector<int>>vec(coins.size(),vector<int>(amount+1,-1));
+        
+         mincoin(coins,coins.size()-1,amount,vec);
+        if(vec[coins.size()-1][amount]>=1e9)
+            return -1;
+        else
+            return vec[coins.size()-1][amount];
+                
+        
+        
+    }

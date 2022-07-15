@@ -1,0 +1,16 @@
+int start=0,cr_ptrl=0,ttl_neg_ptrl=0;
+       for(int i=0;i<n;i++)
+       {
+        cr_ptrl+=(p[i].petrol-p[i].distance);
+        if(cr_ptrl<0)
+        {
+            ttl_neg_ptrl+=cr_ptrl;
+            cr_ptrl=0;
+            start=i+1;
+        }
+       }
+       if((cr_ptrl+ttl_neg_ptrl)>=0)
+       {
+           return start;
+       }
+       return -1;

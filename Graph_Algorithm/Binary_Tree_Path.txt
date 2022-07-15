@@ -1,0 +1,35 @@
+ void dfs(TreeNode* root,vector<string>& v,string& s)
+    {
+        if(root!=NULL){
+        string ns=s;
+        s+="->"+to_string(root->val);
+        if(root->left==NULL && root->right==NULL)
+        {
+            v.push_back(s);
+        }
+        else
+        {
+            dfs(root->left,v,s);
+       
+            dfs(root->right,v,s);
+        }
+        s=ns;
+         }
+        
+    }
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string>v;
+        string s;
+        s=to_string(root->val);
+        if(root->left==NULL && root->right==NULL)
+        {
+            v.push_back(s);
+            
+        }
+        
+            dfs(root->left,v,s);
+       
+            dfs(root->right,v,s);
+        
+            return v;
+    }

@@ -1,0 +1,74 @@
+    int orangesRotting(vector<vector<int>>& grid)
+    {
+        queue<pair<struct point,int>>qu;
+        queue<pair<struct point,int>>rtn;
+        int i,j,ans;
+        struct point pt;
+        struct point npt;
+        for(i=0;i<grid.size();i++)
+        {
+            for(j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]==2)
+                {
+                    pt.x=i;
+                    pt.y=j;
+                   rtn.push({pt,0});
+                }
+            }
+        }
+        while(!rtn.empty())
+        {
+            pt=rtn.front().first;
+            if( ( pt.y +1 )<grid[0].size() && grid[pt.x][pt.y+1]==1)
+              { 
+                npt.x=pt.x;
+                 npt.y=pt.y+1;
+                ans=rtn.front().second+1;
+                grid[npt.x][npt.y]=2;
+                rtn.push({npt,ans});
+             }
+            if((pt.x+1)<grid.size() && grid[pt.x+1][pt.y]==1)
+            {
+                 npt.x=pt.x+1;
+                 npt.y=pt.y;
+                ans=rtn.front().second+1;
+                grid[npt.x][npt.y]=2;
+                rtn.push({npt,ans});
+            }
+            if((pt.y-1)>=0 && grid[pt.x][pt.y-1]==1)
+            {
+                npt.x=pt.x;
+                npt.y=pt.y-1;
+                grid[npt.x][npt.y]=2;
+                ans=rtn.front().second+1;
+                rtn.push({npt,ans});
+            }
+            if((pt.x-1)>=0 && grid[pt.x-1][pt.y]==1)
+            {
+                npt.x=pt.x-1;
+                 npt.y=pt.y;
+                ans=rtn.front().second+1;
+                grid[npt.x][npt.y]=2;
+                rtn.push({npt,ans});
+            }
+                rtn.pop();
+            
+
+        }
+        for(i=0;i<grid.size();i++)
+        {
+            for(j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]==1)
+                {
+                 return -1;
+                }
+            }
+        }
+        return ans;
+        
+        
+                                                
+    
+                                        }

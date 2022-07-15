@@ -1,0 +1,36 @@
+Node* findIntersection(Node* head1, Node* head2)
+{
+    // Your Code Here
+    unordered_map<int,int>ump;
+    Node* nd=head1;
+    struct Node *head=NULL,*temp,*tail;
+    while(nd!=NULL)
+    {
+        ump[nd->data]++;
+        nd=nd->next;
+    }
+    nd=head2;
+    while(nd!=NULL)
+    {
+        if(ump[nd->data]!=0)
+        {
+            ump[nd->data]=0;
+            temp=new Node(nd->data);
+            if(head==NULL)
+            {
+                head=temp;
+                tail=head;
+                //cout<<"temp->data inside head==NULL"<<temp->data<<endl;
+            }
+            else
+            {
+                //cout<<"temp->data inside else"<<temp->data<<endl;
+                tail->next=temp;
+                tail=temp;
+                //cout<<"tell->data "<<tail->data<<endl;
+            }
+        }
+        nd=nd->next;
+    }
+    return head;
+}

@@ -1,0 +1,51 @@
+class Solution {
+public:
+    vector<pair<int,int>>disp{{1,0},{0,1},{0,-1},{-1,0}};
+    bool isValid(int x,int y,int m,int n)
+    {
+        return x>=0 && x<m && y>=0 && y<n;
+    }
+    void bfs(int i,int j,vector<vector<char>>& grid,vector<vector<bool>>& vis,int m,int n)
+    {
+        vis[i][j]=true;
+        queue<pair<int,int>>qu;
+        qu.push({i,j});
+        pair<int,int>pr;
+        int x,y;
+        while(!qu.empty())
+        {
+            pr=qu.front();
+            for(auto dp:disp)
+            {
+                x=pr.first+dp.first;
+                y=pr.second+dp.second;
+                if(isValid(x,y,m,n) && grid[x][y]=='1' && !vis[x][y])
+                {   vis[x][y]=true;
+                    qu.push({x,y});
+                }
+            }
+            qu.pop();
+        }
+    }
+    
+    int numIslands(vector<vector<char>>& grid)
+    {
+        int ans=0;
+        vector<vector<bool>>vis(grid.size(),vector<bool>(grid[0].size(),false));
+        int m=grid.size();
+        int n=grid[0].size(),i,j;
+        for(i=0;i<m;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                if(grid[i][j]=='1' && !vis[i][j])
+                {
+                    ans++;
+                    bfs(i,j,grid,vis,m,n);
+                }
+            }
+        }
+        return ans;
+        
+    }
+};

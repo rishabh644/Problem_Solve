@@ -1,0 +1,70 @@
+int binary_search(vector<int>& arr,int i,int j,int k)
+    {   int ind;
+        while(i!=j)
+        {
+            int mid;
+            mid=(i+j)/2;
+            
+            if(arr[mid]>k)
+            {
+                i=mid+1;
+                ind=mid;
+            }//binary_search(arr,mid+1,j,k);
+            else
+            {
+                j=mid;
+            }
+            //binary_search(arr,i,mid,k);
+            
+        }
+        
+        
+        if(arr[i]>=k)
+        return i;
+        return ind;
+        
+    }
+    void swap(int& a,int& b)
+    {
+        int temp;
+        temp=a;
+        a=b;
+        b=temp;
+    }
+    void reverse(vector<int>& arr,int i,int j)
+    {
+        while(i<j)
+        {
+            swap(arr[i],arr[j]);
+            i++;
+            j--;
+        }
+        
+    }
+    vector<int> nextPermutation(int N, vector<int> arr){
+        // code here
+        int i=N-1,swpi;
+        while(i>0)
+        {   if(arr[i]<=arr[i-1])
+             {
+            
+             i--;
+              }
+             else
+             {
+               break;
+               }
+        }
+        if(i==0)
+        {
+            reverse(arr,0,N-1);
+            return arr;
+        }
+        swpi=binary_search(arr,i,N-1,arr[i-1]);
+        
+        swap(arr[i-1],arr[swpi]);
+        reverse(arr,i,N-1);
+        return arr;
+        
+        
+    }

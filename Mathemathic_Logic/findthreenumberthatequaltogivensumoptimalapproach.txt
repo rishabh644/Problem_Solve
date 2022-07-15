@@ -1,0 +1,28 @@
+bool find3Numbers(int A[], int n, int X)
+    {
+        //Your Code Here
+        int i,j,k;
+        int sum=0,required;
+        
+        sort(A,A+n);
+        for(i=0;i<n-2;i++)
+        {   
+            sum+=A[i];
+            required=X-sum;
+            j=i+1;
+            k=n-1;
+            while(j<k)
+            {
+                if((A[j]+A[k])==required)
+                return true;
+                else if((A[j]+A[k])<required)
+                j++;
+                else
+                k--;
+            }
+            
+           sum=0;
+        }
+         return false;
+      
+    }

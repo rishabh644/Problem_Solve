@@ -1,0 +1,23 @@
+ int minDepth(TreeNode* root) {
+        if(root==NULL)
+            return 0;
+        int dis=0,ans=0;
+        TreeNode* pt;
+        queue< pair<TreeNode*,int> >qu;
+        qu.push({root,dis});
+        while(!qu.empty())
+        {   
+            pt=qu.front().first;
+            dis=qu.front().second;
+            if(pt->left==NULL && pt->right==NULL)
+            {   ans=dis+1;
+                break;}
+             if(pt->left!=NULL)
+                qu.push({pt->left,dis+1});
+            if(pt->right!=NULL)
+                qu.push({pt->right,dis+1});
+            qu.pop();
+            
+        }
+        return ans;
+    }

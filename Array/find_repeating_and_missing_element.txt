@@ -1,0 +1,28 @@
+    int *findTwoElement(int *arr, int n) {
+        // code here
+   static int a[2];
+   int t,i;
+   for(i=0;i<n;i++)
+   {
+       t=abs(arr[i])-1;
+       if(arr[t]>0)
+       {
+           arr[t]=(-1)*(arr[t]);
+       }
+       else
+       {
+           a[0]=abs(arr[i]);
+       }
+   }
+   for(i=0;i<n;i++)
+   {
+       if(arr[i]>0)
+       {
+           a[1]=i+1;
+       }
+   }
+
+    return a;
+
+
+    }

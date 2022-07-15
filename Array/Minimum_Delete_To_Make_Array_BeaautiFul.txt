@@ -1,0 +1,33 @@
+You are given a 0-indexed integer array nums. The array nums is beautiful if:
+
+nums.length is even.
+nums[i] != nums[i + 1] for all i % 2 == 0.
+Note that an empty array is considered beautiful.
+
+You can delete any number of elements from nums. When you delete an element, all the elements to the right of the deleted element will be shifted one unit to the left to fill the gap created and all the elements to the left of the deleted element will remain unchanged.
+
+Return the minimum number of elements to delete from nums to make it beautiful.
+
+
+
+int minDeletion(vector<int>& nums) {
+        int ans=0;
+        int last=-1;
+        int cur=0;
+        for(auto x:nums)
+        {
+            if(x==last && cur%2==1)
+            {
+                ans++;
+            }
+            else
+            {
+                last=x;
+                cur++;
+            }
+        }
+        if(cur%2==1)
+            ans++;
+        return ans;
+        
+    }

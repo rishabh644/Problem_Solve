@@ -1,0 +1,5 @@
+void swap(int *p,int *p1){
+int t=*p;
+*p=*p1;
+*p1=t;
+}

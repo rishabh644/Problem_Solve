@@ -1,0 +1,57 @@
+Link:https://leetcode.com/problems/kth-largest-element-in-an-array/ 
+
+
+int findKthLargest(vector<int>& nums, int k) {
+       
+        
+        return MyKthLargest(nums,0,nums.size()-1,k);
+        
+    }
+    int MyKthLargest(vector<int>&nums,int start,int end,int k)
+    { 
+         int i=partition(nums,start,end);
+        if(i==(k-1))
+        {
+            return nums[i];
+        }
+        else if((k-1)>i)
+        {
+                return MyKthLargest(nums,i+1,end,k);   
+        }
+        else
+        {
+                return MyKthLargest(nums,start,i-1,k);
+        }
+                     }
+   
+         
+    
+    int partition(vector<int>&nums,int start,int end)
+    {   int pvi=start+(rand()%(end-start+1));
+        swap(nums,end,pvi);
+       
+        int i=start;
+        int j=start;
+        while(i<end)
+        {
+            if(nums[i]>=nums[end])
+            {
+                swap(nums,j,i);
+                j++;
+                
+            }
+            
+            i++;
+        }
+        swap(nums,j,end);
+        return j;
+        
+        
+    }
+    void swap(vector<int>&nums,int end,int pvi)
+    {
+        int t;
+        t=nums[end];
+        nums[end]=nums[pvi];
+        nums[pvi]=t;
+    }

@@ -1,0 +1,29 @@
+Link:https://leetcode.com/problems/pascals-triangle/
+
+vector<vector<int>> generate(int numRows) {
+        //Using Tabulation
+        vector<vector<int>>v;
+        int i=1,j;
+        vector<int>t;
+        t.push_back(1);
+        v.push_back(t);
+        if(numRows==1)
+            return v;
+        t.clear();
+            
+        
+        while(i<numRows)
+        {
+            t.push_back(1);
+            j=1;
+            while((t.size()+1)<(i+1)){
+                t.push_back(v[i-1][j-1]+v[i-1][j]);
+                j++;
+            }
+            t.push_back(1);
+            v.push_back(t);
+            t.clear();
+            i++;
+        }
+        return v;
+    }

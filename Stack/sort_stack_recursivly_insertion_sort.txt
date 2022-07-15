@@ -1,0 +1,41 @@
+void insertsort(int,stack<int>&);
+void SortedStack :: sort()
+{
+   //Your code here
+   if(!s.empty())
+   {
+       int tp=s.top();
+       s.pop();
+       sort();
+       insertsort(tp,s);
+   }
+   else
+   {
+       return;
+   }
+}
+void insertsort(int tp,stack<int>&s)
+{
+    if(!s.empty())
+    {
+        if(tp>=s.top())
+        {
+            s.push(tp);
+            return;
+        }
+        else
+        {
+            int tpp=s.top();
+            s.pop();
+            insertsort(tp,s);
+            s.push(tpp);
+            return;
+        }
+        
+    }
+    else
+    {
+        s.push(tp);
+        return;
+    }
+}

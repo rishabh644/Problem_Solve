@@ -1,0 +1,22 @@
+        unsigned int count=0,mycount=0;
+        ListNode *np=head;
+        if(head->next==NULL)
+            return NULL;
+        while(np!=NULL)
+        {
+            count++;
+            np=np->next;
+        }
+        np=head;
+        while(mycount<(count/2))
+        {
+            mycount++;
+            if(mycount==(count/2))
+            {
+                np->next=np->next->next;
+                break;
+            }
+            np=np->next;
+        }
+        return head;
+    }

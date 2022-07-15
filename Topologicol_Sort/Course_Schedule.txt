@@ -1,0 +1,35 @@
+ bool dfs(int v,vector<vector<int> >&adjls,vector<int> &clr)
+    {
+     clr[v]=1;
+        for(auto av:adjls[v])
+        {
+            if(clr[av]==1)
+                return true;
+            if(clr[av]==0 && dfs(av,adjls,clr))
+                return true;
+        }
+        clr[v]=2;
+        return false;
+    }
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites)
+    {
+        if(numCourses==1)
+            return true;
+        vector<vector<int>>adjls(numCourses);
+        for(auto i:prerequisites)
+        {
+            adjls[i[1]].push_back(i[0]);
+        }
+        vector<int>clr(numCourses,0);
+    
+        int v;
+        for(v=0;v<numCourses;v++)
+        {
+            if(clr[v]==0)
+                if(dfs(v,adjls,clr))
+                    return false;
+        }
+        return true;
+        
+    }
+};

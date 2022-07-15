@@ -1,0 +1,54 @@
+ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        
+        vector<vector<int>>adjls(n);
+        vector<int>deg(n,0);
+        vector<int>ans;
+        queue<int>qu;
+        int i,size;
+        if(n==1)
+        {
+            ans.push_back(0);
+            return ans;
+        }
+        for(auto ed:edges)
+        {
+            adjls[ed[0]].push_back(ed[1]);
+            adjls[ed[1]].push_back(ed[0]);
+            deg[ed[0]]++;
+            deg[ed[1]]++;
+        }
+        for(i=0;i<n;i++)
+        {
+            if(deg[i]==1)
+                qu.push(i);
+        }
+        
+        
+        while(n>2)
+        {
+            n-=qu.size();
+            size=qu.size();
+            while(size-->0)
+            {
+                i=qu.front();
+                qu.pop();
+                for(int av:adjls[i])
+                {
+                    deg[av]-=1;
+                    if(deg[av]==1)
+                        qu.push(av);
+                }
+            }
+            
+        }
+        while(!qu.empty())
+        {
+            ans.push_back(qu.front());
+            qu.pop();
+        }
+      
+        return ans;
+        
+        
+    }
+};

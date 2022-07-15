@@ -1,0 +1,52 @@
+struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        // code here
+        first=reverseList(first);
+        second=reverseList(second);
+        int sum,carry=0;
+        struct Node *head=NULL,*temp;
+        while(first!=NULL && second!=NULL)
+        {
+            sum=((first->data)+(second->data));
+            temp=new Node((sum+carry)%10);
+            carry=(sum+carry)/10;
+            temp->next=head;
+            head=temp;
+            first=first->next;
+            second=second->next;
+        }
+        
+    
+        if(first!=NULL){
+        while(first!=NULL)
+        {
+            sum=(first->data)+carry;
+            temp=new Node(sum%10);
+            carry=sum/10;
+            
+            temp->next=head;
+            head=temp;
+            first=first->next;
+        }}
+        else{
+        while(second!=NULL)
+        {
+            sum=(second->data)+carry;
+            temp=new Node(sum%10);
+            carry=sum/10;
+            
+            temp->next=head;
+            head=temp;
+            second=second->next;
+        }
+        }
+        if(carry!=0)
+        {
+            temp=new Node(carry);
+            temp->next=head;
+            head=temp;
+            
+        }
+        
+        return head;
+    }

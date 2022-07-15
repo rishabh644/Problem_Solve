@@ -1,0 +1,25 @@
+int trap(vector<int>& height) {
+        int rmax;
+        int lmax;
+        vector<int>vr(height.size(),0);
+        vector<int>vl(height.size(),0);
+        int h=0,wtr=0,i;
+        for(i=height.size()-1;i>=0;i--)
+        {
+            vr[i]=h;
+            h=max(height[i],h);
+        }
+        h=0;
+       for(i=0;i<height.size();i++)
+        {
+            vl[i]=h;
+            h=max(height[i],h);
+        }
+        
+       for(i=0;i<height.size();i++)
+        {
+           wtr+=( min(vl[i],vr[i]) - height[i])>0?( min(vl[i],vr[i])-height[i]):0;
+        } 
+        
+        return wtr;
+    }

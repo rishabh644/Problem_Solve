@@ -1,0 +1,28 @@
+int lps(string s) {
+	    // Your code goes here
+	    int lpsarr[s.size()],i,len;
+	    lpsarr[0]=0;
+	    len=0;
+	    for(i=1;i<s.size();i++){
+	       while(true){
+	       if(s[len]==s[i])
+	        {
+	            
+	            lpsarr[i]=++len;
+	            break;
+	        }
+	        else if(len>0)
+	        {
+	            len=lpsarr[len-1];
+	        }
+	        
+	       else
+	       {   lpsarr[i]=0;
+	           break;
+	       }             
+	           
+	                   }
+	       
+	                               }
+	    return lpsarr[s.size()-1];
+	}

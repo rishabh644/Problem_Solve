@@ -1,0 +1,59 @@
+  void rotate(vector<vector<int>>& matrix) {
+        int row=matrix.size();
+        int column=matrix.size();
+        int inirot=column-1;
+        int startcolumn=0,endcolumn=column-1,startrow=0,endrow=row-1;
+        int i,j;
+          int rotated;
+        int prev,curr;
+        while(inirot>0)
+        {
+            
+            rotated=0;
+        
+        while(rotated<inirot)
+        {
+            prev=matrix[startrow+1][startcolumn];
+            i=startrow;
+            for(j=startcolumn;j<=endcolumn;j++)
+            {
+                curr=matrix[i][j];
+                matrix[i][j]=prev;
+                prev=curr;
+            }
+            j=endcolumn;
+            for(i=startrow+1;i<=endrow;i++)
+            {   curr=matrix[i][j];
+                matrix[i][j]=prev;
+                prev=curr;
+            
+            }
+            
+            i=endrow;
+            for(j=endcolumn-1;j>=startcolumn;j--)
+            {   curr=matrix[i][j];
+                matrix[i][j]=prev;
+                prev=curr;
+            }
+            j=startcolumn;
+             for(i=endrow-1;i>=startrow+1;i--)
+             {
+                 curr=matrix[i][j];
+                 matrix[i][j]=prev;
+                 prev=curr;
+             }
+           
+             
+            
+            rotated+=1;
+        }
+        startcolumn+=1;
+        endcolumn-=1;
+        startrow+=1;
+        endrow-=1;
+        inirot-=2;
+
+        }
+        
+        
+    }

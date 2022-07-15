@@ -1,0 +1,11 @@
+struct node* reverse(struct node* head){
+    if(head->next == NULL){
+        return head;
+    }
+
+    struct node* newHead = reverse(head->next);
+    head->next->next = head;
+    head->next = NULL;
+
+    return newHead;
+}

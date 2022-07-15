@@ -1,0 +1,25 @@
+int ed(string s,string t,int m,int n,vector<vector<int>>&vec)
+    {
+        if(vec[m][n]==0)
+        {int ans;
+          if(m==0)
+          ans=n;
+          else if(n==0)
+          ans=m;
+          else if(s[m-1]==t[n-1])
+          ans=ed(s,t,m-1,n-1,vec);
+          else
+          {
+              ans=1+min(ed(s,t,m,n-1,vec),min(ed(s,t,m-1,n-1,vec),ed(s,t,m-1,n,vec)));
+          }
+          vec[m][n]=ans; 
+          return vec[m][n];
+        }
+        return vec[m][n];
+    }
+    int editDistance(string s, string t) {
+        // Code here
+        vector<vector<int>>vec(s.size()+1,vector<int>(t.size()+1,0));
+        
+        return ed(s,t,s.size(),t.size(),vec);
+    }

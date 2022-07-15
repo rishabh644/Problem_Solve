@@ -1,0 +1,35 @@
+vector<int> factorial(int N){
+        // code here
+        vector<int>vec,vec1;
+        
+        vec.push_back(1);
+        if(N==1)
+        return vec;
+        int i=2;
+        int carry=0,product,k;
+        while(i<=N)
+        {    carry=0;
+            for(int k=0;k<vec.size();k++)
+            {
+                product=vec[k]*i+carry;
+                
+                vec[k]=product%10;
+                carry=product/10;
+            }
+            while(carry!=0)
+            {
+               
+                
+                 vec.push_back(carry%10);
+                 carry=carry/10; 
+            }
+            i++;
+        }
+        for(i=vec.size()-1;i>=0;i--)
+        {
+            vec1.push_back(vec[i]);
+        }
+        return vec1;
+        
+        
+    }

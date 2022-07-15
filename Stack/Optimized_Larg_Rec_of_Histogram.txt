@@ -1,0 +1,26 @@
+ int largestRectangleArea(vector<int>& heights) {
+      int current=0,area=0,tp,l,r;
+      stack<int>st;
+      heights.push_back(0);
+       while(current<heights.size())
+       {
+            while(!st.empty()  && heights[current]<heights[st.top()])
+            {   r=current;
+                tp=st.top();
+                st.pop();
+                if(st.empty())
+                    l=-1;
+                else
+                    l=st.top();
+                area=max(area,heights[tp]*(r-l-1));
+                
+
+            }
+           
+           
+           st.push(current++);
+       }
+         
+    
+        return area;
+   }

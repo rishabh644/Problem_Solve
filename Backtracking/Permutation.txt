@@ -1,0 +1,41 @@
+class Solution {
+public:
+    void swap(int &x,int &y)
+    {
+        int b;
+        b=x;
+        x=y;
+        y=b;
+    }
+    void permutation( vector<vector<int>>& ans,vector<int>& temp_ans,int i,vector<int>& nums)
+    {   if(i==nums.size())
+         {
+           ans.push_back(temp_ans);
+            return;
+        
+           }
+        
+        for(int j=i;j<nums.size();j++)
+        {
+            swap(nums[i],nums[j]);
+            temp_ans.push_back(nums[i]);
+            permutation(ans,temp_ans,i+1,nums);
+            temp_ans.pop_back();
+            swap(nums[i],nums[j]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>temp_ans;
+        int i=0,j;
+        if(nums.size()==1)
+        {
+            temp_ans.push_back(nums[0]);
+            ans.push_back(temp_ans);
+            return ans;
+        }
+        permutation(ans,temp_ans,0,nums);
+        return ans;
+        
+    }
+};

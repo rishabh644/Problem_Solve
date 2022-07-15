@@ -1,0 +1,25 @@
+int activitySelection(vector<int> start, vector<int> end, int n)
+    {
+        // Your code here
+        vector<pair<int,int>>vc;
+        int i,cnt=0,cre;
+        pair<int,int>pr;
+        for(i=0;i<n;i++)
+        {
+          pr.first=start[i];
+          pr.second=end[i];
+          vc.push_back(pr);
+        }
+        sort(vc.begin(),vc.end(),fxn);
+        cnt=1;
+        cre=vc[0].second;
+        for(i=1;i<n;i++)
+        {
+            if(vc[i].first>cre)
+            {
+                cnt+=1;
+                cre=vc[i].second;
+            }
+        }
+        return cnt;
+    }

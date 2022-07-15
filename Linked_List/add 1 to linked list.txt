@@ -1,0 +1,23 @@
+Node* addOne(Node *head) 
+    {
+        // Your Code here
+        // return head of list after adding one
+        struct Node *cr,*hr;
+        cr=reverseList(head);
+        hr=cr;
+        int sum=0,carry=1;
+        while(cr->next!=NULL)
+        {
+            sum=(cr->data)+carry;
+            cr->data=sum%10;
+            carry=sum/10;
+            if(carry==0)
+            break;
+            cr=cr->next;
+        }
+        if(carry!=0){
+        
+        cr->data=cr->data+carry;}
+        
+        return reverseList(hr);
+    }

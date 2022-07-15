@@ -1,0 +1,27 @@
+ vector<int> JobScheduling(Job arr[], int n) 
+    { 
+        // your code here
+        sort(arr,arr+n,fxn);
+        bool mp[101]={false};
+        int cnt=0,sum=0,k,i;
+        //vector<int>ans;
+        for(i=0;i<n;i++)
+        {  
+             k=arr[i].dead;
+            while(k>=1)
+            {
+                if(mp[k]==false)
+                {  mp[k]=true;
+                    cnt++;
+                    sum+=arr[i].profit;
+                    break;
+                }
+                else
+                {
+                    k--;
+                }
+            }
+        }
+
+        return {cnt,sum};
+    } 

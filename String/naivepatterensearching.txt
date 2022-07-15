@@ -1,0 +1,21 @@
+bool searchPattern(string str, string pat)
+{
+    // your code here
+    int l1=str.size(),l2=pat.size(),i,j;
+    
+    for(i=0;i<(l1-l2+1);i++)
+    {
+        for(j=0;j<l2;j++)
+        {
+            if(str[i+j]!=pat[j])
+            {
+                break;
+            }
+        }
+        if(j==l2)
+        {
+            return true;
+        }
+    }
+    return false;
+}

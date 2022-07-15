@@ -1,0 +1,29 @@
+int lpsi(string s,int len)
+    {
+        int length=len-1,k;
+        bool check;
+        int slen=s.size();
+        for(;length>0;length--)
+        {   check=true;
+            for(k=0;k<length;k++)
+            {
+                if(s[k]!=s[slen-length+k])
+                 {
+                     check=false;
+                     break;
+                 } 
+            }
+            if(check==true)
+            return length;
+        }
+        return 0;
+    }
+	int lps(string s) {
+	    // Your code goes here
+	    int lng=INT_MIN,i;
+	    for(i=0;i<s.size();i++)
+	    {
+	        lng=max(lng,lpsi(s,i+1));
+	    }
+	    return lng;
+	}

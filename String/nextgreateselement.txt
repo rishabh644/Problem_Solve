@@ -1,0 +1,31 @@
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        vector<long long>vec(n,0);
+        stack<long long >st;
+        int i;
+    
+        for(i=n-1;i>=0;i--)
+        {
+              if(!st.empty())
+              {
+                  while((!st.empty()) && (st.top()<=arr[i]))
+                  {
+                      st.pop();
+                  }
+                  if(!st.empty())
+                  {
+                      vec[i]=st.top();
+                  }
+                  else
+                  {
+                      vec[i]=-1;
+                  }
+              }
+              else
+              {
+                  vec[i]=-1;
+              }
+              st.push(arr[i]);
+        }
+        return vec;
+    }

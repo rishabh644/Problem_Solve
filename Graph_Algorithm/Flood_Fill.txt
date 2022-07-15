@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<pair<int,int>>disp={{1,0},{0,1},{-1,0},{0,-1}};
+    bool isValid(int x,int y,int m,int n)
+    {
+        return x>=0 && x<m && y>=0 && y<n;
+    }
+    
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        if(image[sr][sc]==newColor)
+            return image;
+        queue<pair<int,int>>qu;
+        vector<vector<int>>vis(image.size(),vector<int>(image[0].size(),0));
+        qu.push({sr,sc});
+        pair<int,int>p;
+        int x,y;
+        while(!qu.empty())
+        {    p=qu.front();
+            for(pair<int,int> d:disp)
+            {
+                x=p.first+d.first;
+                y=p.second+d.second;
+                if(isValid(x,y,image.size(),image[0].size()) && image[x][y]==image[p.first][p.second] && !vis[x][y])
+                {
+                    vis[x][y]=1;
+                    qu.push({x,y});
+                }
+            }
+           image[p.first][p.second]=newColor;
+           qu.pop();
+        }
+        return image;
+    }
+};

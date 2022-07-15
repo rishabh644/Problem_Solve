@@ -1,0 +1,15 @@
+    int largestRectangleArea(vector<int>& heights) {
+       int l,r,area=0,i;
+        for(i=0;i<heights.size();i++)
+        {
+            l=i;
+            r=i;
+            while(l>=0 && heights[l]>=heights[i])
+                l--;
+            while(r<heights.size() && heights[r]>=heights[i])
+                r++;
+            area=max(heights[i]*(r-l-1),area);
+            
+        }
+        return area;
+    }

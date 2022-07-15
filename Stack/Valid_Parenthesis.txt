@@ -1,0 +1,25 @@
+   bool isValid(string s) {
+        int i=0;
+        stack<char>ss; 
+        while(i<s.size())
+        {
+            while(ss.empty()==false && i<s.size() && ( (ss.top()==s[i]-1) || (ss.top()==s[i]-2) || (ss.top()==s[i]-2)))
+            {    
+                ss.pop();
+                i++;
+            }
+           
+            if(i<s.size())
+            {
+                ss.push(s[i]);
+                i++;
+               
+            }
+            
+        }
+     
+        if(ss.empty()==true)
+            return true;
+        else
+            return false;
+    }

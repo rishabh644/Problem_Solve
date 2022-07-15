@@ -1,0 +1,28 @@
+bool detectLoop(Node* head)
+    {
+        // your code herer
+        struct Node *l,*r;
+        l=head;
+    if(head->next!=NULL)
+    r=head->next->next;
+    else
+    {
+        return false;
+    }
+        
+        while(r!=NULL)
+        {
+            if(l==r)
+            return true;
+            if(r->next!=NULL)
+            {
+                r=r->next->next;
+            }
+            else
+            {
+                return false;
+            }
+            l=l->next;
+        }
+        return false;
+    }

@@ -1,0 +1,36 @@
+int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        int a,b,i;
+        a=0;
+        b=n-1;
+        while(a<b)
+        {
+            if(M[a][b]==1 && M[b][a]!=1)
+            a++;
+            else if(M[a][b]!=1 && M[b][a]==1)
+            b--;
+            else
+            {
+                a++;
+                b--;
+            }
+        }
+        for(i=0;i<n;i++)
+        {   if(i!=a){
+            if(M[a][i]==0 && M[i][a]==1)
+            {
+                
+            }
+            else
+            {
+                return -1;
+            }
+            
+            }
+        }
+        return a;
+        
+        
+        
+    }

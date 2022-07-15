@@ -1,0 +1,20 @@
+bool hasCycle(ListNode *head) {
+       if(head==NULL)
+           return false;
+       ListNode *Fast=NULL,*Slow=NULL;
+       Slow=head->next;
+       if(head->next!=NULL)
+           Fast=head->next->next;
+       else
+           return false;
+        while(Slow!=Fast)
+        {
+            Slow=Slow->next;
+            if(Fast!=NULL && Fast->next!=NULL)
+                Fast=Fast->next->next;
+            else
+                return false;
+        }
+        return true;
+    }
+};

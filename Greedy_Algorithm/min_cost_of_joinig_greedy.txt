@@ -1,0 +1,64 @@
+    long long minCost(long long arr[], long long n)
+    {
+        // Your code here//
+        if(n==1)
+        return 0;
+        /*
+        sort(arr,arr+n);
+        stack<long long>st,st1;
+        long long i;
+        for(i=n-1;i>=0;i--)
+        {
+            st.push(arr[i]);
+        }
+        long long a=0,b=0;
+        long long cost=0;
+        while(!st.empty())
+        {
+            a=st.top();
+            st.pop();
+            if(!st.empty())
+           { b=st.top();
+            st.pop();
+           }
+            cost+=(a+b);
+            if(!st.empty())
+            {
+               while(!st.empty() && st.top()<(a+b))
+               {
+                 st1.push(st.top());
+                 st.pop();
+               }
+              st1.push(a+b);   
+            }
+            while(!st1.empty())
+            {
+                st.push(st1.top());
+                st1.pop();
+            }
+            
+        }
+        return cost;*/
+       long long i,cost=0,a,b;
+       multiset<long long>st;
+       multiset<long long>::iterator itr;
+       for(i=0;i<n;i++)
+       {
+           st.insert(arr[i]);
+       }
+       while(st.size()>=2)
+       {
+           itr=st.begin();
+           a=*itr;
+           itr++;
+           b=*itr;
+           itr++;
+           cost+=a+b;
+           st.erase(st.begin(),itr);
+           if(!st.empty())
+           {
+               st.insert(a+b);
+           }
+       }
+       return cost;
+    
